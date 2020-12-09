@@ -1,2 +1,2 @@
 # NET-Core-React-Hooks
-[Udemy Course](https://www.udemy.com/course/aspnet-core-react-hooks/)
+Curso en español [Udemy - .Net Core y React Hooks](https://www.udemy.com/course/aspnet-core-react-hooks/)
