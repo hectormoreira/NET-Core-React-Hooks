@@ -8,3 +8,8 @@ mkdir LeerData
 cd LeerData
 dotnet new console
 ```
+
+### Run console
+```
+dotnet run --project LeerData
+```
