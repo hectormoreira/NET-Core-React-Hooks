@@ -52,3 +52,4 @@ D:\Desarrollo_01\Proyect\React\net-core-react-hooks\netcore\LeerData\obj\Debug\n
 D:\Desarrollo_01\Proyect\React\net-core-react-hooks\netcore\LeerData\obj\Debug\netcoreapp3.1\LeerData.dll
 D:\Desarrollo_01\Proyect\React\net-core-react-hooks\netcore\LeerData\obj\Debug\netcoreapp3.1\LeerData.pdb
 D:\Desarrollo_01\Proyect\React\net-core-react-hooks\netcore\LeerData\obj\Debug\netcoreapp3.1\LeerData.genruntimeconfig.cache
+D:\Desarrollo_01\Proyect\React\net-core-react-hooks\netcore\LeerData\bin\Debug\netcoreapp3.1\Microsoft.EntityFrameworkCore.Design.dll
