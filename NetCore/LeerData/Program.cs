@@ -48,9 +48,6 @@ namespace LeerData
                     }
                     Console.WriteLine("--------");
                 }
-
-
-
             }
         }
     }
