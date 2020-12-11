@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 namespace LeerData
 {
     public class Curso
@@ -7,8 +8,9 @@ namespace LeerData
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
         public DateTime FechaPublicacion { get; set; }
-        public byte[] FotoPublicacion { get; set; }
-        
+        //public byte[] FotoPublicacion { get; set; }
+
         public Precio PrecioPromocion { get; set; }
+        public ICollection<Comentario> ComentarioLista { get; set; }
     }
 }
