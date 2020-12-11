@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "+8Se0cPaphMAX5yNhfelKA21bTxxokrH1M+um9whY7NbPiMTDYe5WL8klwYKGrCEMt2odIWhFWnlqDBLZAkysw==",
+  "success": true,
+  "projectFilePath": "D:\\Desarrollo_01\\Proyect\\React\\net-core-react-hooks\\ProyectoCore\\Dominio\\Dominio.csproj",
+  "expectedPackageFiles": [
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
+    "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\netstandard.library\\2.0.3\\netstandard.library.2.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
