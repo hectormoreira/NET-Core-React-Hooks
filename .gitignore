@@ -3,6 +3,7 @@
 *.com
 *.class
 *.dll
+*.pdb
 *.exe
 *.o
 *.so
@@ -35,3 +36,8 @@
 .Trashes
 ehthumbs.db
 Thumbs.db
+
+# Directories #
+######################
+obj/
+bin/

@@ -25,6 +25,29 @@
         "build": {
           "build/netstandard2.0/NETStandard.Library.targets": {}
         }
+      },
+      "Dominio/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "compile": {
+          "bin/placeholder/Dominio.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Dominio.dll": {}
+        }
+      },
+      "Persistencia/1.0.0": {
+        "type": "project",
+        "framework": ".NETStandard,Version=v2.0",
+        "dependencies": {
+          "Dominio": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/Persistencia.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/Persistencia.dll": {}
+        }
       }
     }
   },
@@ -171,11 +194,23 @@
         "netstandard.library.2.0.3.nupkg.sha512",
         "netstandard.library.nuspec"
       ]
+    },
+    "Dominio/1.0.0": {
+      "type": "project",
+      "path": "../Dominio/Dominio.csproj",
+      "msbuildProject": "../Dominio/Dominio.csproj"
+    },
+    "Persistencia/1.0.0": {
+      "type": "project",
+      "path": "../Persistencia/Persistencia.csproj",
+      "msbuildProject": "../Persistencia/Persistencia.csproj"
     }
   },
   "projectFileDependencyGroups": {
     ".NETStandard,Version=v2.0": [
-      "NETStandard.Library >= 2.0.3"
+      "Dominio >= 1.0.0",
+      "NETStandard.Library >= 2.0.3",
+      "Persistencia >= 1.0.0"
     ]
   },
   "packageFolders": {
@@ -210,7 +245,14 @@
       },
       "frameworks": {
         "netstandard2.0": {
-          "projectReferences": {}
+          "projectReferences": {
+            "D:\\Desarrollo_01\\Proyect\\React\\net-core-react-hooks\\ProyectoCore\\Dominio\\Dominio.csproj": {
+              "projectPath": "D:\\Desarrollo_01\\Proyect\\React\\net-core-react-hooks\\ProyectoCore\\Dominio\\Dominio.csproj"
+            },
+            "D:\\Desarrollo_01\\Proyect\\React\\net-core-react-hooks\\ProyectoCore\\Persistencia\\Persistencia.csproj": {
+              "projectPath": "D:\\Desarrollo_01\\Proyect\\React\\net-core-react-hooks\\ProyectoCore\\Persistencia\\Persistencia.csproj"
+            }
+          }
         }
       },
       "warningProperties": {
