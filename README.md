@@ -12,6 +12,9 @@ En Persistencia:
 - Microsoft.EntityFrameworkCore.SqlServer
 - Microsoft.EntityFrameworkCore.Tools
 
+En Aplicacion, para inyección de dependencias
+- MediatR.Extension.Microsoft.DependencyInjection
+
 ## Extensiones VSCode
 - Auto rename tag - JunHan
 - C# - Microsoft
