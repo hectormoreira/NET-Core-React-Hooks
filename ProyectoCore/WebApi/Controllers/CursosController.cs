@@ -41,7 +41,10 @@ namespace WebApi.Controllers
             return await _mediator.Send(data);
         }
 
-
-
+        
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Unit>> Eliminar(int id){
+            return await _mediator.Send(new Eliminar.Ejecuta{Id = id});
+        }
     }
 }
