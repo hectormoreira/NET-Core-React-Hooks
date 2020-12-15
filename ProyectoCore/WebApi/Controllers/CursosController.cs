@@ -35,6 +35,12 @@ namespace WebApi.Controllers
             return await _mediator.Send(data);
         }
 
+        [HttpPut("{id}")]
+        public async Task<ActionResult<Unit>> Editar(int id, Editar.Ejecuta data){
+            data.CursoId = id;
+            return await _mediator.Send(data);
+        }
+
 
 
     }
