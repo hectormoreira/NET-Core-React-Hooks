@@ -1,6 +1,8 @@
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Aplicacion.ManejadorError;
 using FluentValidation;
 using MediatR;
 using Persistencia;
@@ -40,7 +42,7 @@ namespace Aplicacion.Cursos
                 var curso = await _context.Curso.FindAsync(request.CursoId);
                 if (curso == null)
                 {
-                    throw new Exception("El curso no existe");
+                    throw new ManejadorExcepcion(HttpStatusCode.NotFound, new {mensaje = "No se encontró el curso"});
                 }
 
                 curso.Titulo = request.Titulo ?? curso.Titulo;
@@ -53,7 +55,7 @@ namespace Aplicacion.Cursos
                 {
                     return Unit.Value;
                 }else{
-                    throw new Exception("No se guardaron los cambios en el curso");
+                    throw new ManejadorExcepcion(HttpStatusCode.NotModified, new {mensaje = "No se guardaron los cambios en el curso"});
                 }
 
             }

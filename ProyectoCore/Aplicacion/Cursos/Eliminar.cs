@@ -1,6 +1,8 @@
 using System;
+using System.Net;
 using System.Threading;
 using System.Threading.Tasks;
+using Aplicacion.ManejadorError;
 using MediatR;
 using Persistencia;
 
@@ -26,7 +28,8 @@ namespace Aplicacion.Cursos
                 var curso = await _context.Curso.FindAsync(request.Id);
                 if (curso == null)
                 {
-                    throw new Exception("No se pudo eliminar el curso");
+                    //throw new Exception("No se pudo eliminar el curso");
+                    throw new ManejadorExcepcion(HttpStatusCode.NotFound, new {mensaje = "No se encontró el curso"});
                 }
                 _context.Remove(curso);
 
@@ -38,7 +41,8 @@ namespace Aplicacion.Cursos
                 }
                 else
                 {
-                    throw new Exception("No se guardaron los cambios");
+                    //throw new Exception("No se guardaron los cambios");
+                    throw new ManejadorExcepcion(HttpStatusCode.NotModified, new {curso = "No se guardaron los cambios"});
                 }
             }
         }

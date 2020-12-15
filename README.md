@@ -21,6 +21,7 @@ En Persistencia:
 En Aplicacion, para inyección de dependencias
 - MediatR.Extension.Microsoft.DependencyInjection
 - FluentValidation.AspNetCore 8.6.2
+- Newtonsoft.Json
 
 ## Extensiones VSCode
 - Auto rename tag - JunHan
