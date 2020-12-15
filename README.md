@@ -5,6 +5,12 @@ Curso en español [Udemy - .Net Core y React Hooks](https://www.udemy.com/course
 ```
 dotnet run -p WebApi/
 ```
+Otros comandos:
+```
+dotnet restore
+dotnet build
+```
+
 
 ## Instalar dependencias Core 3.1.10
 En Persistencia:
@@ -14,6 +20,7 @@ En Persistencia:
 
 En Aplicacion, para inyección de dependencias
 - MediatR.Extension.Microsoft.DependencyInjection
+- FluentValidation.AspNetCore 8.6.2
 
 ## Extensiones VSCode
 - Auto rename tag - JunHan

@@ -1,7 +1,9 @@
 using System;
+using System.ComponentModel.DataAnnotations;
 using System.Threading;
 using System.Threading.Tasks;
 using Dominio;
+using FluentValidation;
 using MediatR;
 using Persistencia;
 
@@ -13,7 +15,17 @@ namespace Aplicacion.Cursos
         {
             public string Titulo { get; set; }
             public string Descripcion { get; set; }
-            public DateTime FechaPublicacion { get; set; }
+            public DateTime? FechaPublicacion { get; set; }
+        }
+
+        public class EjecutaValidacion : AbstractValidator<Ejecuta>
+        {
+            public EjecutaValidacion()
+            {
+                RuleFor( x => x.Titulo).NotEmpty();
+                RuleFor( x => x.Descripcion).NotEmpty();
+                RuleFor( x => x.FechaPublicacion).NotEmpty();
+            }
         }
 
         public class Manejador : IRequestHandler<Ejecuta>
@@ -32,8 +44,8 @@ namespace Aplicacion.Cursos
                     FechaPublicacion = request.FechaPublicacion
                 };
                 _context.Curso.Add(curso);
-                var saveOk = await _context.SaveChangesAsync();
-                if (saveOk > 0)
+                var respuesta = await _context.SaveChangesAsync();
+                if (respuesta > 0)
                 {
                     return Unit.Value;
                 }
