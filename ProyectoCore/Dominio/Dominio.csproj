@@ -5,4 +5,7 @@
   <ItemGroup>
     <FrameworkReference Include="Microsoft.AspNetCore.app"/>
   </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="3.1.10"/>
+  </ItemGroup>
 </Project>
