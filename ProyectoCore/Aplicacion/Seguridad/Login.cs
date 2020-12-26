@@ -11,12 +11,22 @@ namespace Aplicacion.Seguridad
 {
     public class Login
     {
-        public class Ejecuta : IRequest<Usuario>{
+        public class Ejecuta : IRequest<UsuarioData>
+        {
             public string Email { get; set; }
             public string Password { get; set; }
         }
 
-        public class Manejador : IRequestHandler<Ejecuta, Usuario>
+        public class EjecutaValidacion : AbstractValidator<Ejecuta>
+        {
+            public EjecutaValidacion()
+            {
+                RuleFor(x => x.Email).NotEmpty();
+                RuleFor(x => x.Password).NotEmpty();
+            }
+        }
+
+        public class Manejador : IRequestHandler<Ejecuta, UsuarioData>
         {
             private readonly UserManager<Usuario> _userManager;
             private readonly SignInManager<Usuario> _signInManager;
@@ -27,17 +37,7 @@ namespace Aplicacion.Seguridad
                 _signInManager = signInManager;
             }
 
-            public class EjecutaValidacion : AbstractValidator<Ejecuta>
-            {
-                public EjecutaValidacion()
-                {
-                    RuleFor(x => x.Email).NotEmpty();
-                    RuleFor(x => x.Password).NotEmpty();
-                }
-            }
-
-
-            public async Task<Usuario> Handle(Ejecuta request, CancellationToken cancellationToken)
+            public async Task<UsuarioData> Handle(Ejecuta request, CancellationToken cancellationToken)
             {
                 var usuario = await _userManager.FindByEmailAsync(request.Email);
                 if (usuario == null)
@@ -48,7 +48,13 @@ namespace Aplicacion.Seguridad
 
                 if (resultado.Succeeded)
                 {
-                    return usuario;
+                    return new UsuarioData{
+                        NombreCompleto = usuario.NombreCompleto,
+                        Email = usuario.Email,
+                        Token = "Data de token",
+                        UserName = usuario.UserName,
+                        Imagen = null
+                    };
                 }
 
                 throw new ManejadorExcepcion(HttpStatusCode.Unauthorized);
