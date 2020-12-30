@@ -23,6 +23,9 @@ En Aplicacion, para inyección de dependencias
 - FluentValidation.AspNetCore 8.6.2
 - Newtonsoft.Json
 
+En Seguridad
+- System.IdentityModel.Token.Jwt
+
 ## Extensiones VSCode
 - Auto rename tag - JunHan
 - C# - Microsoft
