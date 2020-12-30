@@ -1,16 +1,13 @@
 using System;
-using System.Collections.Generic;
 
-namespace Dominio
+namespace Aplicacion.Cursos
 {
-    public class Instructor
+    public class InstructorDto
     {
         public Guid InstructorId { get; set; }
         public string Nombre { get; set; }
         public string Apellidos { get; set; }
         public string Grado { get; set; }
         //public byte[] FotoPerfil { get; set; }
-
-        public ICollection<CursoInstructor> CursoLink { get; set; }
     }
 }

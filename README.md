@@ -22,6 +22,7 @@ En Aplicacion, para inyección de dependencias
 - MediatR.Extension.Microsoft.DependencyInjection
 - FluentValidation.AspNetCore 8.6.2
 - Newtonsoft.Json
+- AutoMapper.Extensions.Microsoft.DependencyInjection
 
 En Seguridad
 - System.IdentityModel.Token.Jwt
