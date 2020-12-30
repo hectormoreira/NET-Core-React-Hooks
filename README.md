@@ -33,17 +33,17 @@ En WebApi
 ## Crear Migración y actualizar base
 Instalar EF
 
-``
+```
 dotnet tool install --global dotnet-ef --version 3.1.10
-``
+```
 
 Migración
 
-``
+```
 dotnet ef migrations add updateDatabase -p Persistencia/ -s WebApi/
 cd WebApi
 dotnet watch run
-``
+```
 
 ## Extensiones VSCode
 - Auto rename tag - JunHan
