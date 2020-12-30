@@ -17,7 +17,7 @@ namespace Seguridad
                 new Claim(JwtRegisteredClaimNames.NameId, usuario.UserName)
             };
 
-            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Mim palabra secreta"));
+            var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("Mi palabra secreta"));
             var credenciales = new SigningCredentials(key, SecurityAlgorithms.HmacSha256Signature);
 
             var tokenDescripcion = new SecurityTokenDescriptor{

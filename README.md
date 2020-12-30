@@ -26,6 +26,9 @@ En Aplicacion, para inyección de dependencias
 En Seguridad
 - System.IdentityModel.Token.Jwt
 
+En WebApi
+- Microsoft.AspNetCore.Authentication.JwtBearer
+
 ## Extensiones VSCode
 - Auto rename tag - JunHan
 - C# - Microsoft
