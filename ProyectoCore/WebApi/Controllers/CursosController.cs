@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Aplicacion.Cursos;
@@ -22,7 +23,7 @@ namespace WebApi.Controllers
 
         //http://localhost:5000/api/cursos/{id}
         [HttpGet("{id}")]
-        public async Task<ActionResult<Curso>> Detalle(int id){
+        public async Task<ActionResult<CursoDto>> Detalle(Guid id){
             return await Mediator.Send(new ConsultaId.CursoUnico{Id = id});
         }
 
