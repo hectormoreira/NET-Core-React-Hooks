@@ -25,7 +25,7 @@ namespace Persistencia.DapperConexion.Instructor
             throw new NotImplementedException();
         }
 
-        public async Task<int> Nuevo(InstructorModel instructor)
+        public async Task<int> Nuevo(string nombre, string apellidos, string titulo)
         {
             var storeProcedure = "usp_instructor_nuevo";
             try
@@ -34,9 +34,9 @@ namespace Persistencia.DapperConexion.Instructor
                 var resultado = await connection.ExecuteAsync(storeProcedure, new
                 {
                     InstructorId = Guid.NewGuid(),
-                    Nombre = instructor.Nombre,
-                    Apellidos = instructor.Apellidos,
-                    Titulo = instructor.Titulo
+                    Nombre = nombre,
+                    Apellidos = apellidos,
+                    Titulo = titulo
                 },
                 commandType: CommandType.StoredProcedure
                 );

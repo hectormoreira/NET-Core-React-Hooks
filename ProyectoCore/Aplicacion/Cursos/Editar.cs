@@ -25,7 +25,7 @@ namespace Aplicacion.Cursos
             public decimal? Promocion { get; set; }
         }
 
-         public class EjecutaValidacion : AbstractValidator<Ejecuta>
+        public class EjecutaValidacion : AbstractValidator<Ejecuta>
         {
             public EjecutaValidacion()
             {
