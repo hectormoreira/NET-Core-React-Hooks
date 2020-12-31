@@ -17,6 +17,7 @@ En Persistencia:
 - Microsoft.EntityFrameworkCore
 - Microsoft.EntityFrameworkCore.SqlServer
 - Microsoft.EntityFrameworkCore.Tools
+- Dapper
 
 En Aplicacion, para inyección de dependencias
 - MediatR.Extension.Microsoft.DependencyInjection
