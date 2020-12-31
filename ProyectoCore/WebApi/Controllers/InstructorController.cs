@@ -30,6 +30,11 @@ namespace WebApi.Controllers
         public async Task<ActionResult<Unit>> Eliminar(Guid id){
             return await Mediator.Send(new Eliminar.Ejecuta{Id = id});
         }
+
+        [HttpGet("{id}")]
+        public async Task<ActionResult<InstructorModel>> ObtenerPorId(Guid id){
+            return await Mediator.Send(new ConsultaId.Ejecuta{Id = id});
+        }
         
     }
 }

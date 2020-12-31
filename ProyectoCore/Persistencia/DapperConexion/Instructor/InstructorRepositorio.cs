@@ -42,7 +42,7 @@ namespace Persistencia.DapperConexion.Instructor
 
         public async Task<int> Eliminar(Guid id)
         {
-             var storeProcedure = "usp_instructor_eliminar";
+            var storeProcedure = "usp_instructor_eliminar";
             try
             {
                 var connection = _factoryConnection.GetConnection();
@@ -94,7 +94,9 @@ namespace Persistencia.DapperConexion.Instructor
             try
             {
                 var connection = _factoryConnection.GetConnection();
-                instructorList = await connection.QueryAsync<InstructorModel>(storeProcedure, null, commandType: CommandType.StoredProcedure);
+                instructorList = await connection.QueryAsync<InstructorModel>(
+                    storeProcedure,null, commandType: CommandType.StoredProcedure
+                );
             }
             catch (Exception e)
             {
@@ -107,9 +109,27 @@ namespace Persistencia.DapperConexion.Instructor
             return instructorList;
         }
 
-        public Task<InstructorModel> ObtenerPorId()
+        public async Task<InstructorModel> ObtenerPorId(Guid id)
         {
-            throw new NotImplementedException();
+            var storeProcedure = "usp_instructor_por_id";
+            InstructorModel instructor = null;
+            try
+            {
+                var connection = _factoryConnection.GetConnection();
+                instructor = await connection.QueryFirstAsync<InstructorModel>(
+                    storeProcedure,
+                    new {
+                        Id = id
+                    },
+                    commandType: CommandType.StoredProcedure
+                );
+                _factoryConnection.CloseConnection();
+                return instructor;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se encontró el instructor", e);
+            }
         }
     }
 }
