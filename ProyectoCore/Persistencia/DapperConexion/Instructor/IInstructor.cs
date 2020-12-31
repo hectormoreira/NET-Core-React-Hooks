@@ -6,7 +6,7 @@ namespace Persistencia.DapperConexion.Instructor
 {
     public interface IInstructor
     {
-         Task<IList<InstructorModel>> ObtenerLista();
+         Task<IEnumerable<InstructorModel>> ObtenerLista();
          Task<InstructorModel> ObtenerPorid();
          Task<int> Nuevo(InstructorModel instructor);
          Task<int> Actualizar(InstructorModel instructor);
