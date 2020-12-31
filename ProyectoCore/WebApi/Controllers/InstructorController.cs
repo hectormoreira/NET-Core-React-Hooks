@@ -25,6 +25,11 @@ namespace WebApi.Controllers
             data.InstructorId = id;
             return await Mediator.Send(data);
         }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult<Unit>> Eliminar(Guid id){
+            return await Mediator.Send(new Eliminar.Ejecuta{Id = id});
+        }
         
     }
 }
