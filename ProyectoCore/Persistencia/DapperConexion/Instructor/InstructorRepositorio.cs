@@ -25,9 +25,30 @@ namespace Persistencia.DapperConexion.Instructor
             throw new NotImplementedException();
         }
 
-        public Task<int> Nuevo(InstructorModel instructor)
+        public async Task<int> Nuevo(InstructorModel instructor)
         {
-            throw new NotImplementedException();
+            var storeProcedure = "usp_instructor_nuevo";
+            try
+            {
+                var connection = _factoryConnection.GetConnection();
+                var resultado = await connection.ExecuteAsync(storeProcedure, new
+                {
+                    InstructorId = Guid.NewGuid(),
+                    Nombre = instructor.Nombre,
+                    Apellidos = instructor.Apellidos,
+                    Titulo = instructor.Titulo
+                },
+                commandType: CommandType.StoredProcedure
+                );
+
+                _factoryConnection.CloseConnection();
+
+                return resultado;
+            }
+            catch (Exception e)
+            {
+                throw new Exception("No se pudo guardar al nuevo instructor", e);
+            }
         }
 
         public async Task<IEnumerable<InstructorModel>> ObtenerLista()
@@ -37,18 +58,20 @@ namespace Persistencia.DapperConexion.Instructor
             try
             {
                 var connection = _factoryConnection.GetConnection();
-                instructorList = await connection.QueryAsync<InstructorModel>(storeProcedure, null, commandType : CommandType.StoredProcedure);
+                instructorList = await connection.QueryAsync<InstructorModel>(storeProcedure, null, commandType: CommandType.StoredProcedure);
             }
             catch (Exception e)
             {
-                throw new Exception("Error en la consulta de datos", e) ;
-            }finally{
+                throw new Exception("Error en la consulta de datos", e);
+            }
+            finally
+            {
                 _factoryConnection.CloseConnection();
             }
             return instructorList;
         }
 
-        public Task<InstructorModel> ObtenerPorid()
+        public Task<InstructorModel> ObtenerPorId()
         {
             throw new NotImplementedException();
         }
