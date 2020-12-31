@@ -4,13 +4,13 @@ using Microsoft.Extensions.Options;
 
 namespace Persistencia.DapperConexion
 {
-    public class FactoryConennection : IFactoryConnection
+    public class FactoryConnection : IFactoryConnection
     {
         private IDbConnection _connection;
         private readonly IOptions<ConexionConfiguracion> _configs;
-        public FactoryConennection(IDbConnection connection)
+        public FactoryConnection(IOptions<ConexionConfiguracion> configs)
         {
-            _connection = connection;
+            _configs = configs;
         }
 
         public void CloseConnection()
@@ -25,7 +25,7 @@ namespace Persistencia.DapperConexion
         {
             if (_connection == null)
             {
-                _connection = new SqlConnection(_configs.Value.ConexionSql);
+                _connection = new SqlConnection(_configs.Value.DefaultConnection);
             }
 
             if (_connection.State != ConnectionState.Open)
