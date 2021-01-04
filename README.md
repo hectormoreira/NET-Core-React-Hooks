@@ -31,6 +31,7 @@ En Seguridad
 
 En WebApi
 - Microsoft.AspNetCore.Authentication.JwtBearer
+- Swashbuckle.AspNetCore
 
 ## Crear Migración y actualizar base
 Instalar EF
