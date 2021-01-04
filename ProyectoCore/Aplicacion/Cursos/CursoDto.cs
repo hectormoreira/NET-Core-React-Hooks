@@ -10,6 +10,7 @@ namespace Aplicacion.Cursos
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
         public DateTime? FechaPublicacion { get; set; }
+        public DateTime? FechaCreacion { get; set; }
         public byte[] FotoPublicacion { get; set; }
         public ICollection<InstructorDto> Instructores { get; set; }
         public PrecioDto Precio { get; set; }
