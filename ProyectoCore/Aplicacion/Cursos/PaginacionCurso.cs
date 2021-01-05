@@ -25,10 +25,10 @@ namespace Aplicacion.Cursos
 
             public async Task<PaginacionModel> Handle(Ejecuta request, CancellationToken cancellationToken)
             {
-                var storeProcedure = "usp_obtener_pagacion";
+                var storeProcedure = "usp_obtener_curso_paginacion";
                 var ordenamiento = "Titulo";
                 var parametros = new Dictionary<string, object>();
-                parametros.Add("@NombreCurso", request.Titulo);
+                parametros.Add("NombreCurso", request.Titulo);
                 return await _paginacion.DevolverPaginacion(storeProcedure, request.NumeroPagina, request.CantidadElementos,parametros, ordenamiento);
             }
         }
