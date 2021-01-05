@@ -16,7 +16,7 @@ namespace Persistencia.DapperConexion.Paginacion
 
         public IFactoryConnection _factoryConnection { get; set; }
 
-        public async Task<PaginacionModel> RetornarPaginacion(string storeProcedure, int numeroPagina, int cantidadElementos, IDictionary<string, object> parametroFiltro, string ordenamientoColumna)
+        public async Task<PaginacionModel> DevolverPaginacion(string storeProcedure, int numeroPagina, int cantidadElementos, IDictionary<string, object> parametroFiltro, string ordenamientoColumna)
         {
             PaginacionModel paginacionModel = new PaginacionModel();
             List<IDictionary<string, object>> listaReporte = null;

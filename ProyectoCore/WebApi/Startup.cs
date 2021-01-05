@@ -29,6 +29,7 @@ using Microsoft.OpenApi.Models;
 using Persistencia;
 using Persistencia.DapperConexion;
 using Persistencia.DapperConexion.Instructor;
+using Persistencia.DapperConexion.Paginacion;
 using Seguridad;
 using WebApi.Middleware;
 
@@ -88,6 +89,7 @@ namespace WebApi
 
             services.AddTransient<IFactoryConnection, FactoryConnection>();
             services.AddScoped<IInstructor, InstructorRepositorio>();
+            services.AddScoped<IPaginacion, PaginacionRepositorio>();
 
             services.AddSwaggerGen(x => {
                 x.SwaggerDoc("v1", new OpenApiInfo{
