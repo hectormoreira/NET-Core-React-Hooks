@@ -11,5 +11,11 @@ namespace WebApi.Controllers
         public async Task<ActionResult<Unit>> Crear(RolNuevo.Ejecuta parametros){
             return await Mediator.Send(parametros);
         }
+
+        [HttpDelete("eliminar")]
+        public async Task<ActionResult<Unit>> Elminar(RolEliminar.Ejecuta parametros){
+            return await Mediator.Send(parametros);
+        }
+
     }
 }
