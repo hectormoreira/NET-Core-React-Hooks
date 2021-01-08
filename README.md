@@ -74,7 +74,10 @@ npm start
 ## Librerías
 ```
 npm install axios
+npm install @material-ui/core
+npm install @material-ui/styles
 ```
 
-## Api publica
-- [restcountries](https://restcountries.eu/rest/v2/all)
+## Recursos
+- [restcountries](https://restcountries.eu/rest/v2/all) Client http
+- [Material UI](https://material-ui.com/es/)
