@@ -1,23 +1,17 @@
-import logo from './logo.svg';
-import './App.css';
-
+import React, { useState } from "react";
+import Perfil from "./Componentes/Perfil.js"
 function App() {
+  const [nombre, cambiarNombre] = useState("No tiene nombre");
+
+  function eventoCajaTexto(e){
+    cambiarNombre(e.target.value);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <h1>Welcome de nuevo {nombre}</h1>
+      <input type="text" name="nombre" value={nombre} onChange={eventoCajaTexto}/>
+      <Perfil miAtributo={nombre}/>
     </div>
   );
 }

@@ -54,7 +54,7 @@ dotnet watch run
 - [Nuget Package Manager - jmrog](https://marketplace.visualstudio.com/items?itemName=jmrog.vscode-nuget-package-manager)
 - [Reactjs code snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.ReactSnippets)
 - [React Redux ES6 Snippets](https://marketplace.visualstudio.com/items?itemName=timothymclane.react-redux-es6-snippets)
-- Prettier - Code formatter
+- [Prettier - Code formatter](https://marketplace.visualstudio.com/items?itemName=esbenp.prettier-vscode)
 - [Node.js Modules Intellisense](https://marketplace.visualstudio.com/items?itemName=leizongmin.node-module-intellisense)
 - [HTML Boilerplate](https://marketplace.visualstudio.com/items?itemName=sidthesloth.html5-boilerplate)
 - [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
@@ -70,3 +70,11 @@ Run app
 cd cursos-online-app
 npm start
 ```
+
+## Librerías
+```
+npm install axios
+```
+
+## Api publica
+- [restcountries](https://restcountries.eu/rest/v2/all)
