@@ -20,8 +20,13 @@ namespace WebApi.Controllers
         }
 
         [HttpGet("lista")]
-        public async Task<ActionResult<List<IdentityRole>>> Lista (){
+        public async Task<ActionResult<List<IdentityRole>>> Lista(){
             return await Mediator.Send(new RolLista.Ejecuta());
+        }
+
+        [HttpPost("agregarRoleUsuario")]
+        public async Task<ActionResult<Unit>> AgregarRoleUsuario(UsuarioRolAgregar.Ejecuta parametros){
+            return await Mediator.Send(parametros);
         }
 
     }
