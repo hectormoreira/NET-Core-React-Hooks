@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Identity;
 
 namespace Aplicacion.Seguridad
 {
-    public class UsuarioRolAgregar
+    public class UsuarioRolEliminar
     {
         public class Ejecuta : IRequest
         {
@@ -43,16 +43,16 @@ namespace Aplicacion.Seguridad
                 var role = await _roleManager.FindByNameAsync(request.RolNombre);
                 if (role == null)
                 {
-                    throw new ManejadorExcepcion(HttpStatusCode.NotFound, new {mensaje = "El rol no existe"});
+                    throw new ManejadorExcepcion(HttpStatusCode.NotFound, new { mensaje = "El rol no existe" });
                 }
 
                 var usuarioIden = await _userManager.FindByNameAsync(request.UserName);
                 if (usuarioIden == null)
                 {
-                    throw new ManejadorExcepcion(HttpStatusCode.NotFound, new {mensaje = "El usuario no existe"});
+                    throw new ManejadorExcepcion(HttpStatusCode.NotFound, new { mensaje = "El usuario no existe" });
                 }
 
-                var resultado = await _userManager.AddToRoleAsync(usuarioIden, request.RolNombre);
+                var resultado = await _userManager.RemoveFromRoleAsync(usuarioIden, request.RolNombre);
                 if (resultado.Succeeded)
                 {
                     return Unit.Value;
@@ -61,6 +61,5 @@ namespace Aplicacion.Seguridad
                 throw new Exception("No se pudo agregar el Rol al usuario");
             }
         }
-
     }
 }
