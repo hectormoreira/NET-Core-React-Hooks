@@ -12,7 +12,6 @@ dotnet restore
 dotnet build
 ```
 
-
 ## Instalar dependencias Core 3.1.10
 En Persistencia:
 - Microsoft.EntityFrameworkCore
@@ -59,3 +58,15 @@ dotnet watch run
 - [Node.js Modules Intellisense](https://marketplace.visualstudio.com/items?itemName=leizongmin.node-module-intellisense)
 - [HTML Boilerplate](https://marketplace.visualstudio.com/items?itemName=sidthesloth.html5-boilerplate)
 - [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
+
+
+# React app
+Crear nuevo proyecto
+```
+npx create-react-app cursos-online-app 
+```
+Run app
+```
+cd cursos-online-app
+npm start
+```

@@ -41,3 +41,8 @@ Thumbs.db
 ######################
 obj/
 bin/
+
+# dependencies
+node_modules/
+.pnp
+.pnp.js
