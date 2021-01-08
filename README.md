@@ -53,3 +53,9 @@ dotnet watch run
 - C# - Microsoft
 - C# extension - jchannon
 - Nuget Package Manager - jmrog
+- Reactjs code snippets
+- React Redux ES6 Snippets
+- Prettier - Code formatter
+- Node.js Modules Intellisense
+- HTML Boilerplate
+- Auto Close Tag
