@@ -49,13 +49,13 @@ dotnet watch run
 ```
 
 ## Extensiones VSCode
-- Auto rename tag - JunHan
-- C# - Microsoft
-- C# extension - jchannon
-- Nuget Package Manager - jmrog
-- Reactjs code snippets
-- React Redux ES6 Snippets
+- [Auto rename tag - JunHan](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
+- [C# - Microsoft](https://marketplace.visualstudio.com/items?itemName=ms-dotnettools.csharp)
+- [C# extension - jchannon](https://marketplace.visualstudio.com/items?itemName=jchannon.csharpextensions)
+- [Nuget Package Manager - jmrog](https://marketplace.visualstudio.com/items?itemName=jmrog.vscode-nuget-package-manager)
+- [Reactjs code snippets](https://marketplace.visualstudio.com/items?itemName=xabikos.ReactSnippets)
+- [React Redux ES6 Snippets](https://marketplace.visualstudio.com/items?itemName=timothymclane.react-redux-es6-snippets)
 - Prettier - Code formatter
-- Node.js Modules Intellisense
-- HTML Boilerplate
-- Auto Close Tag
+- [Node.js Modules Intellisense](https://marketplace.visualstudio.com/items?itemName=leizongmin.node-module-intellisense)
+- [HTML Boilerplate](https://marketplace.visualstudio.com/items?itemName=sidthesloth.html5-boilerplate)
+- [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
