@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Button,
   Container,
@@ -9,6 +9,28 @@ import {
 import style from "../tool/Style";
 
 const RegistrarUsuario = () => {
+  const [usuario, setUsuario] = useState({
+    NombreCompleto: '',
+    Password: '',
+    ConfirmarPassword: '',
+    Username: '',
+    Email: ''
+  })
+
+  const ingresarValores = e =>{
+    const {name, value} = e.target;
+    setUsuario(anterior =>({
+      ...anterior,
+      [name]: value
+    }))
+  }
+
+  const registrarUsuario = e =>{
+    e.preventDefault();
+    console.table(usuario);
+  }
+
+ 
   return (
     <Container component="main" maxWidth="md" justify="center">
       <div style={style.paper}>
@@ -19,49 +41,59 @@ const RegistrarUsuario = () => {
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
               <TextField
-                name="nombreCompleto"
+                name="NombreCompleto"
                 variant="outlined"
                 fullWidth
                 label="Ingrese su nombre y apellidos"
+                value={usuario.NombreCompleto}
+                onChange={ingresarValores}
               />
             </Grid>
 
             <Grid item xs={12} md={6}>
               <TextField
-                name="email"
+                name="Email"
                 type="email"
                 variant="outlined"
                 fullWidth
                 label="Ingrese su email"
+                value={usuario.Email}
+                onChange={ingresarValores}
               />
             </Grid>
 
             <Grid item xs={12} md={6}>
               <TextField
-                name="username"
+                name="Username"
                 variant="outlined"
                 fullWidth
                 label="Ingrese su username"
+                value={usuario.Username}
+                onChange={ingresarValores}
               />
             </Grid>
 
             <Grid item xs={12} md={6}>
               <TextField
-                name="password"
+                name="Password"
                 type="password"
                 variant="outlined"
                 fullWidth
                 label="Ingrese su password"
+                value={usuario.Password}
+                onChange={ingresarValores}
               />
             </Grid>
 
             <Grid item xs={12} md={6}>
               <TextField
-                name="confirmacionPassword"
+                name="ConfirmarPassword"
                 type="password"
                 variant="outlined"
                 fullWidth
                 label="Confirme su password"
+                value={usuario.ConfirmarPassword}
+                onChange={ingresarValores}
               />
             </Grid>
           </Grid>
@@ -74,6 +106,7 @@ const RegistrarUsuario = () => {
                 color="primary"
                 size="large"
                 style={style.submit}
+                onClick={registrarUsuario}
               >
                 Enviar
               </Button>
