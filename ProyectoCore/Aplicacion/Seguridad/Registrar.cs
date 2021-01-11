@@ -18,8 +18,7 @@ namespace Aplicacion.Seguridad
     {
         public class Ejecuta : IRequest<UsuarioData>
         {
-            public string Nombre { get; set; }
-            public string Apellidos { get; set; }
+            public string NombreCompleto { get; set; }
             public string Username { get; set; }
             public string Email { get; set; }
             public string Password { get; set; }
@@ -29,8 +28,7 @@ namespace Aplicacion.Seguridad
         {
             public EjecutaValidacion()
             {
-                RuleFor(x => x.Nombre).NotEmpty();
-                RuleFor(x => x.Apellidos).NotEmpty();
+                RuleFor(x => x.NombreCompleto).NotEmpty();
                 RuleFor(x => x.Username).NotEmpty();
                 RuleFor(x => x.Email).NotEmpty();
                 RuleFor(x => x.Password).NotEmpty();
@@ -67,7 +65,7 @@ namespace Aplicacion.Seguridad
                 }
 
                 var usuario = new Usuario{
-                    NombreCompleto = request.Nombre + " " + request.Apellidos,
+                    NombreCompleto = request.NombreCompleto,
                     Email = request.Email,
                     UserName = request.Username
                 };
