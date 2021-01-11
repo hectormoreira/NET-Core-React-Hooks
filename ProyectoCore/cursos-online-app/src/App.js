@@ -1,14 +1,12 @@
 import React from "react";
-import MuiThemeprovider from "@material-ui/core/styles/MuiThemeProvider";
+import { ThemeProvider as MuiThemeprovider} from "@material-ui/core/styles";
 import theme from "./theme/theme";
-import { Button, TextField } from "@material-ui/core";
+import Login from "./componentes/seguridad/Login";
 
 function App() {
   return(
     <MuiThemeprovider theme={theme}>
-      <h1>Proyecto vacío</h1>
-      <TextField variant="outlined" />
-      <Button variant="contained" color="primary"> Mi boton material </Button>
+      <Login/>
     </MuiThemeprovider>
   )
 }
