@@ -19,19 +19,10 @@ const RegistrarUsuario = () => {
           <Grid container spacing={2}>
             <Grid item xs={12} md={6}>
               <TextField
-                name="nombre"
+                name="nombreCompleto"
                 variant="outlined"
                 fullWidth
-                label="Ingrese su nombre"
-              />
-            </Grid>
-
-            <Grid item xs={12} md={6}>
-              <TextField
-                name="apellidos"
-                variant="outlined"
-                fullWidth
-                label="Ingrese su apellido"
+                label="Ingrese su nombre y apellidos"
               />
             </Grid>
 

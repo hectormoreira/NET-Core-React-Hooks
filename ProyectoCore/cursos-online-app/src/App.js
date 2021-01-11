@@ -1,12 +1,12 @@
 import React from "react";
 import { ThemeProvider as MuiThemeprovider} from "@material-ui/core/styles";
 import theme from "./theme/theme";
-import Login from "./componentes/seguridad/Login";
+import PerfilUsuario from "./componentes/seguridad/PerfilUsuario";
 
 function App() {
   return(
     <MuiThemeprovider theme={theme}>
-      <Login/>
+      <PerfilUsuario/>
     </MuiThemeprovider>
   )
 }
