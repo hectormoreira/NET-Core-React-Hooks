@@ -7,30 +7,32 @@ import {
   Typography,
 } from "@material-ui/core";
 import style from "../tool/Style";
+import { registrarUsuario } from "../../actions/usuarioAction";
 
 const RegistrarUsuario = () => {
   const [usuario, setUsuario] = useState({
-    NombreCompleto: '',
-    Password: '',
-    ConfirmarPassword: '',
-    Username: '',
-    Email: ''
-  })
+    NombreCompleto: "",
+    Password: "",
+    ConfirmarPassword: "",
+    Username: "",
+    Email: "",
+  });
 
-  const ingresarValores = e =>{
-    const {name, value} = e.target;
-    setUsuario(anterior =>({
+  const ingresarValores = (e) => {
+    const { name, value } = e.target;
+    setUsuario((anterior) => ({
       ...anterior,
-      [name]: value
-    }))
-  }
+      [name]: value,
+    }));
+  };
 
-  const registrarUsuario = e =>{
+  const registrarUsuarioBtn = (e) => {
     e.preventDefault();
-    console.table(usuario);
-  }
+    registrarUsuario(usuario).then((response) => {
+      console.log("Usuario registrado", response);
+    });
+  };
 
- 
   return (
     <Container component="main" maxWidth="md" justify="center">
       <div style={style.paper}>
@@ -39,7 +41,7 @@ const RegistrarUsuario = () => {
         </Typography>
         <form style={style.form}>
           <Grid container spacing={2}>
-            <Grid item xs={12} md={6}>
+            <Grid item xs={12} md={12}>
               <TextField
                 name="NombreCompleto"
                 variant="outlined"
@@ -106,7 +108,7 @@ const RegistrarUsuario = () => {
                 color="primary"
                 size="large"
                 style={style.submit}
-                onClick={registrarUsuario}
+                onClick={registrarUsuarioBtn}
               >
                 Enviar
               </Button>
