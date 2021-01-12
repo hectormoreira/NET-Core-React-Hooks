@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Container,
   TextField,
@@ -9,6 +9,21 @@ import {
 import style from "../tool/Style";
 
 const PerfilUsuario = () => {
+  const [usuario, setUsuario] = useState({
+    NombreCompleto: "",
+    Password: "",
+    ConfirmarPassword: "",
+    Email: ""
+  })
+
+  const IngresarValores = e =>{
+    const {name, value} = e.target;
+    setUsuario(anterior => ({
+      ...anterior,
+      [name]: value
+    }))
+  }
+
   return (
     <Container component="main" maxWidth="md" justify="center">
       <div style={style.paper}>
@@ -20,39 +35,47 @@ const PerfilUsuario = () => {
         <Grid container spacing={2}>
           <Grid item xs={12} md={6}>
             <TextField
-              name="nombreCompleto"
+              name="NombreCompleto"
               variant="outlined"
               fullWidth
               label="Ingrese nombre y apellidos"
+              onChange={IngresarValores}
+              value={usuario.NombreCompleto}
             />
           </Grid>
 
           <Grid item xs={12} md={6}>
             <TextField
-              name="email"
+              name="Email"
               variant="outlined"
               fullWidth
               label="Ingrese su email"
+              onChange={IngresarValores}
+              value={usuario.Email}
             />
           </Grid>
 
           <Grid item xs={12} md={6}>
             <TextField
-              name="password"
+              name="Password"
               variant="outlined"
               type="password"
               fullWidth
               label="Ingrese su password"
+              onChange={IngresarValores}
+              value={usuario.Password}
             />
           </Grid>
 
           <Grid item xs={12} md={6}>
             <TextField
-              name="confirmePassword"
+              name="ConfirmarPassword"
               variant="outlined"
               type="password"
               fullWidth
-              label="Confirma su password"
+              label="Confirmar su password"
+              onChange={IngresarValores}
+              value={usuario.ConfirmarPassword}
             />
           </Grid>
         </Grid>

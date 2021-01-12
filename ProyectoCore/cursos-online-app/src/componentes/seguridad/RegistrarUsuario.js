@@ -15,7 +15,7 @@ const RegistrarUsuario = () => {
     Password: "",
     ConfirmarPassword: "",
     Username: "",
-    Email: "",
+    Email: ""
   });
 
   const ingresarValores = (e) => {
@@ -30,7 +30,9 @@ const RegistrarUsuario = () => {
     e.preventDefault();
     registrarUsuario(usuario).then((response) => {
       console.log("Usuario registrado", response);
+      window.localStorage.setItem("token_seguridad", response.data.token);
     });
+
   };
 
   return (
