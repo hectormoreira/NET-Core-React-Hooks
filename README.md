@@ -76,9 +76,11 @@ npm start
 npm install axios
 npm install @material-ui/core
 npm install @material-ui/styles
+npm install @material-ui/icons
 ```
 
 ## Recursos
-- [restcountries](https://restcountries.eu/rest/v2/all) Client http
+- Client http [restcountries](https://restcountries.eu/rest/v2/all)
 - [Material UI](https://material-ui.com/es/)
 - [Color tool](https://material.io/resources/color)
+- [Axios](https://github.com/axios/axios)

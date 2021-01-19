@@ -7,3 +7,11 @@ export const registrarUsuario = usuario =>{
         })
     })
 }
+
+export const obtenerUsuarioActual = () =>{
+    return new Promise( (resolve, eject) =>{
+        HttpCliente.get('/usuario').then(response => {
+            resolve(response);
+        })
+    })
+}

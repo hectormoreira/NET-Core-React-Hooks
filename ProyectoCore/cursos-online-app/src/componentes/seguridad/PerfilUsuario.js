@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   Container,
   TextField,
@@ -7,13 +7,15 @@ import {
   Grid,
 } from "@material-ui/core";
 import style from "../tool/Style";
+import { obtenerUsuarioActual } from "../../actions/usuarioAction";
 
 const PerfilUsuario = () => {
   const [usuario, setUsuario] = useState({
-    NombreCompleto: "",
-    Password: "",
-    ConfirmarPassword: "",
-    Email: ""
+    nombreCompleto: "",
+    password: "",
+    confirmarPassword: "",
+    email: "",
+    userName: ""
   })
 
   const IngresarValores = e =>{
@@ -21,8 +23,15 @@ const PerfilUsuario = () => {
     setUsuario(anterior => ({
       ...anterior,
       [name]: value
-    }))
+    }));
   }
+
+  useEffect(() =>{
+    obtenerUsuarioActual().then(response =>{
+      console.log("data del usuario actual ", response);
+      setUsuario(response.data);
+    });
+  }, [])
 
   return (
     <Container component="main" maxWidth="md" justify="center">
@@ -33,49 +42,60 @@ const PerfilUsuario = () => {
       </div>
       <form style={style.form}>
         <Grid container spacing={2}>
-          <Grid item xs={12} md={6}>
+          <Grid item xs={12} md={12}>
             <TextField
-              name="NombreCompleto"
+              name="nombreCompleto"
               variant="outlined"
               fullWidth
               label="Ingrese nombre y apellidos"
               onChange={IngresarValores}
-              value={usuario.NombreCompleto}
+              value={usuario.nombreCompleto}
             />
           </Grid>
 
           <Grid item xs={12} md={6}>
             <TextField
-              name="Email"
+              name="userName"
+              variant="outlined"
+              fullWidth
+              label="Ingrese su username"
+              onChange={IngresarValores}
+              value={usuario.userName}
+            />
+          </Grid>
+
+          <Grid item xs={12} md={6}>
+            <TextField
+              name="email"
               variant="outlined"
               fullWidth
               label="Ingrese su email"
               onChange={IngresarValores}
-              value={usuario.Email}
+              value={usuario.email}
             />
           </Grid>
 
           <Grid item xs={12} md={6}>
             <TextField
-              name="Password"
+              name="password"
               variant="outlined"
               type="password"
               fullWidth
               label="Ingrese su password"
               onChange={IngresarValores}
-              value={usuario.Password}
+              value={usuario.password}
             />
           </Grid>
 
           <Grid item xs={12} md={6}>
             <TextField
-              name="ConfirmarPassword"
+              name="confirmarPassword"
               variant="outlined"
               type="password"
               fullWidth
               label="Confirmar su password"
               onChange={IngresarValores}
-              value={usuario.ConfirmarPassword}
+              value={usuario.confirmarPassword}
             />
           </Grid>
         </Grid>
