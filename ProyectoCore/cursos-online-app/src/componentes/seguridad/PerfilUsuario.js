@@ -7,7 +7,7 @@ import {
   Grid,
 } from "@material-ui/core";
 import style from "../tool/Style";
-import { obtenerUsuarioActual } from "../../actions/usuarioAction";
+import { actualizarUsuario, obtenerUsuarioActual } from "../../actions/usuarioAction";
 
 const PerfilUsuario = () => {
   const [usuario, setUsuario] = useState({
@@ -32,6 +32,14 @@ const PerfilUsuario = () => {
       setUsuario(response.data);
     });
   }, [])
+
+  const guardarUsuario = e =>{
+    e.preventDefault();
+    actualizarUsuario(usuario).then(response =>{
+      console.log("usuario actualizado ", usuario);
+      window.localStorage.setItem("token_seguridad", response.data.token);
+    })
+  }
 
   return (
     <Container component="main" maxWidth="md" justify="center">
@@ -106,9 +114,10 @@ const PerfilUsuario = () => {
               type="submit"
               fullWidth
               variant="contained"
-              color="primary"
+              color="primary" 
               size="large"
               style={style.submit}
+              onClick={guardarUsuario}
             >
               Guardar datos
             </Button>

@@ -15,3 +15,11 @@ export const obtenerUsuarioActual = () =>{
         })
     })
 }
+
+export const actualizarUsuario = (usuario) =>{
+    return new Promise( (resolve, eject) =>{
+        HttpCliente.put('/usuario', usuario).then(response => {
+            resolve(response);
+        })
+    })
+}
