@@ -5,11 +5,33 @@ import {
   Typography,
   Button,
 } from "@material-ui/core";
-import React from "react";
+import React, { useState } from "react";
 import style from "../tool/Style";
 import LockOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
+import { loginUsuario } from "../../actions/usuarioAction";
 
 const Login = () => {
+  const [usuario, setUsuario] = useState({
+    Email: '',
+    Password: ''
+  });
+
+  const IngresarValores = e =>{
+    const {name, value} = e.target;
+    setUsuario(anterior => ({
+      ...anterior,
+      [name]: value
+    }));
+  }
+
+  const login = e =>{
+    e.preventDefault();
+    loginUsuario(usuario).then(response =>{
+      console.log('Login exitoso >>> ', usuario);
+      window.localStorage.setItem("token_seguridad", response.data.token);
+    })
+  }
+
   return (
     <Container maxWidth="xs">
       <div style={style.paper}>
@@ -21,19 +43,23 @@ const Login = () => {
         </Typography>
         <form style={style.form}>
           <TextField
-            name="username"
+            name="Email"
             variant="outlined"
             label="Ingrese username"
             fullWidth
             margin="normal"
+            onChange={IngresarValores}
+            value={usuario.Email}
           />
           <TextField
-            name="password"
+            name="Password"
             type="password"
             variant="outlined"
             label="Ingrese password"
             fullWidth
             margin="normal"
+            onChange={IngresarValores}
+            value={usuario.Password}
           />
           <Button
             type="submit"
@@ -42,6 +68,7 @@ const Login = () => {
             color="primary"
             size="large"
             style={style.submit}
+            onClick={login}
           >
             Enviar
           </Button>
