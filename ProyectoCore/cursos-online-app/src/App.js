@@ -6,11 +6,13 @@ import PerfilUsuario from "./componentes/seguridad/PerfilUsuario";
 import Login from "./componentes/seguridad/Login";
 import RegistrarUsuario from "./componentes/seguridad/RegistrarUsuario";
 import { Grid } from "@material-ui/core";
+import AppNavbar from "./componentes/navegacion/AppNavbar";
 
 function App() {
   return (
     <Router>
       <MuiThemeprovider theme={theme}>
+        <AppNavbar/>
         <Grid container>
           <Switch>
             <Route exact path="/auth/login" component={Login} />
