@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { ThemeProvider as MuiThemeprovider } from "@material-ui/core/styles";
 import theme from "./theme/theme";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
@@ -7,8 +7,23 @@ import Login from "./componentes/seguridad/Login";
 import RegistrarUsuario from "./componentes/seguridad/RegistrarUsuario";
 import { Grid } from "@material-ui/core";
 import AppNavbar from "./componentes/navegacion/AppNavbar";
+import { useStateValue } from "./contexto/store";
+import { obtenerUsuarioActual } from "./actions/usuarioAction";
 
 function App() {
+  const [{sesionUsuario}, dispatch] = useStateValue();
+  const [iniciaApp, setIniciaApp] = useState(false);
+
+  useEffect(() =>{
+    if (!iniciaApp) {
+      obtenerUsuarioActual(dispatch).then(response =>{
+        setIniciaApp(true);
+      }).catch(error =>{
+        setIniciaApp(true);
+      });
+    }
+  }, [iniciaApp])
+
   return (
     <Router>
       <MuiThemeprovider theme={theme}>

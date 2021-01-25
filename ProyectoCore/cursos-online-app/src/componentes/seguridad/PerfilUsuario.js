@@ -26,12 +26,12 @@ const PerfilUsuario = () => {
     }));
   }
 
-  useEffect(() =>{
-    obtenerUsuarioActual().then(response =>{
-      console.log("data del usuario actual ", response);
-      setUsuario(response.data);
-    });
-  }, [])
+  // useEffect(() =>{
+  //   obtenerUsuarioActual().then(response =>{
+  //     console.log("data del usuario actual ", response);
+  //     setUsuario(response.data);
+  //   });
+  // }, [])
 
   const guardarUsuario = e =>{
     e.preventDefault();
