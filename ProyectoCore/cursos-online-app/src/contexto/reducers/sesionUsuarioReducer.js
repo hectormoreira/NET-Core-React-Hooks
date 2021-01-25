@@ -8,7 +8,7 @@ export const initialState = {
   autenticado: false,
 };
 
-const sessionUsuarioReducer = (state = initialState, action) => {
+const sesionUsuarioReducer = (state = initialState, action) => {
   switch (action.type) {
     case "INICIAR_SESION":
       return {
@@ -28,7 +28,9 @@ const sessionUsuarioReducer = (state = initialState, action) => {
         usuario: action.nuevoUsuario,
         autenticado: action.autenticado,
       }
+    default:
+        return state;
   }
 };
 
-export default sessionUsuarioReducer;
+export default sesionUsuarioReducer;
