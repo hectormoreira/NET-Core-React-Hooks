@@ -78,6 +78,8 @@ npm install @material-ui/core
 npm install @material-ui/styles
 npm install @material-ui/icons
 npm install react-router-dom
+npm install react-images-upload
+npm install uuid
 ```
 
 ## Recursos
