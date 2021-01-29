@@ -8,8 +8,12 @@ import {
 } from "@material-ui/core";
 import style from "../tool/Style";
 import { actualizarUsuario, obtenerUsuarioActual } from "../../actions/usuarioAction";
+import { useStateValue } from "../../contexto/store";
 
 const PerfilUsuario = () => {
+  const [{ sesionUsuario }, dispatch] = useStateValue();
+
+
   const [usuario, setUsuario] = useState({
     nombreCompleto: "",
     password: "",
@@ -26,18 +30,34 @@ const PerfilUsuario = () => {
     }));
   }
 
-  // useEffect(() =>{
-  //   obtenerUsuarioActual().then(response =>{
-  //     console.log("data del usuario actual ", response);
-  //     setUsuario(response.data);
-  //   });
-  // }, [])
+  useEffect(() =>{
+    obtenerUsuarioActual(dispatch).then(response =>{
+      console.log("data del usuario actual ", response);
+      setUsuario(response.data);
+    });
+  }, [])
 
   const guardarUsuario = e =>{
     e.preventDefault();
     actualizarUsuario(usuario).then(response =>{
-      console.log("usuario actualizado ", usuario);
-      //window.localStorage.setItem("token_seguridad", response.data.token);
+      if (response.status === 200) {
+        dispatch({
+          type: "OPEN_SNACKBAR",
+          openMensaje: {
+            open: true,
+            mensaje: "Se guardaron exitosamente los cambios en Perfil de usuario"
+          }
+        })
+        window.localStorage.setItem("token_seguridad", response.data.token);
+      }else{
+        dispatch({
+          type: "OPEN_SNACKBAR",
+          openMensaje: {
+            open: true,
+            mensaje: "Errores al intentar guardar en: " + Object.keys(response.data.errors)
+          }
+        })
+      }
     })
   }
 
