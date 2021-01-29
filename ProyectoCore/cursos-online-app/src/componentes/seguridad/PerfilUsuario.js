@@ -37,7 +37,7 @@ const PerfilUsuario = () => {
     e.preventDefault();
     actualizarUsuario(usuario).then(response =>{
       console.log("usuario actualizado ", usuario);
-      window.localStorage.setItem("token_seguridad", response.data.token);
+      //window.localStorage.setItem("token_seguridad", response.data.token);
     })
   }
 

@@ -23,8 +23,12 @@ export const obtenerUsuarioActual = (dispatch) =>{
 
 export const actualizarUsuario = (usuario) =>{
     return new Promise( (resolve, eject) =>{
-        HttpCliente.put('/usuario', usuario).then(response => {
+        HttpCliente.put('/usuario', usuario)
+        .then(response => {
             resolve(response);
+        })
+        .catch(error => {
+            resolve(error.response);
         })
     })
 }
