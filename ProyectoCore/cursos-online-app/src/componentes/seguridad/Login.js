@@ -9,28 +9,42 @@ import React, { useState } from "react";
 import style from "../tool/Style";
 import LockOutlinedIcon from "@material-ui/icons/LockOpenOutlined";
 import { loginUsuario } from "../../actions/usuarioAction";
+import { withRouter } from 'react-router-dom';
+import { useStateValue } from '../../contexto/store';
 
-const Login = () => {
+const Login = (props) => {
+  const [{usuarioSesion}, dispatch]  = useStateValue();
+
   const [usuario, setUsuario] = useState({
-    Email: '',
-    Password: ''
+    Email: "",
+    Password: "",
   });
 
-  const IngresarValores = e =>{
-    const {name, value} = e.target;
-    setUsuario(anterior => ({
+  const IngresarValores = (e) => {
+    const { name, value } = e.target;
+    setUsuario((anterior) => ({
       ...anterior,
-      [name]: value
+      [name]: value,
     }));
-  }
+  };
 
-  const login = e =>{
+  const login = (e) => {
     e.preventDefault();
-    loginUsuario(usuario).then(response =>{
-      console.log('Login exitoso >>> ', usuario);
-      window.localStorage.setItem("token_seguridad", response.data.token);
-    })
-  }
+    loginUsuario(usuario, dispatch).then((response) => {
+      if (response.status === 200) {
+        window.localStorage.setItem("token_seguridad", response.data.token);
+        props.history.push("/");
+      } else {
+        dispatch({
+          type: "OPEN_SNACKBAR",
+          openMensaje: {
+            open: true,
+            mensaje: "Las credenciales del usuario son incorrectas",
+          },
+        });
+      }
+    });
+  };
 
   return (
     <Container maxWidth="xs">

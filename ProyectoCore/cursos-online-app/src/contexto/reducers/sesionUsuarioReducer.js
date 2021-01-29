@@ -3,7 +3,7 @@ export const initialState = {
     nombreCompleto: "",
     email: "",
     userName: "",
-    foto: "",
+    imagen: "",
   },
   autenticado: false,
 };
