@@ -6,13 +6,11 @@ import {
   Button,
   Avatar,
   Drawer,
-  List,
-  ListItemText,
-  ListItem,
 } from "@material-ui/core";
 import React, { useState } from "react";
 import { useStateValue } from "../../../contexto/store";
 import fotoUsuarioTemp from "../../../logo.svg";
+import { Menu } from "./menu";
 
 const useStyle = makeStyles((theme) => ({
   seccionDesktop: {
@@ -66,12 +64,7 @@ const BarSesion = () => {
         anchor="left"
       >
         <div className={classes.list} onKeyDown={cerrarMenu} onClick={cerrarMenu}>
-          <List>
-            <ListItem button>
-              <i className="material-icons">account_box</i>
-              <ListItemText className={{primary: classes.listItemText}} primary="Perfil" />
-            </ListItem>
-          </List>
+         <Menu classes={classes} />
         </div>
       </Drawer>
 
