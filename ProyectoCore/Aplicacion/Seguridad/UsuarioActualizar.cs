@@ -23,6 +23,7 @@ namespace Aplicacion.Seguridad
             public string Email { get; set; }
             public string Password { get; set; }
             public string Username { get; set; }
+            public ImagenGeneral ImagenPerfil { get; set; }
         }
 
         public class EjecutaValidacion : AbstractValidator<Ejecuta>
@@ -56,13 +57,38 @@ namespace Aplicacion.Seguridad
                 var usuarioIden = await _userManager.FindByNameAsync(request.Username);
                 if (usuarioIden == null)
                 {
-                    throw new ManejadorExcepcion(HttpStatusCode.NotFound, new {mensaje = "No existe usuario con este username"});
+                    throw new ManejadorExcepcion(HttpStatusCode.NotFound, new { mensaje = "No existe usuario con este username" });
                 }
 
                 var usuarioExiste = await _context.Users.Where(x => x.Email.Equals(request.Email) && !x.UserName.Equals(request.Username)).AnyAsync();
                 if (usuarioExiste)
                 {
-                    throw new ManejadorExcepcion(HttpStatusCode.InternalServerError, new {mensaje = "Este email pertenece a otro usuario"});
+                    throw new ManejadorExcepcion(HttpStatusCode.InternalServerError, new { mensaje = "Este email pertenece a otro usuario" });
+                }
+
+                if (request.ImagenPerfil != null)
+                {
+                    var resultadoImagen = await _context.Documento.Where(x => x.ObjetoReferencia.Equals(new Guid(usuarioIden.Id))).FirstAsync();
+                    if (resultadoImagen == null)
+                    {
+                        var imagen = new Documento
+                        {
+                            Contenido = Convert.FromBase64String(request.ImagenPerfil.Data),
+                            Nombre = request.ImagenPerfil.Nombre,
+                            Extension = request.ImagenPerfil.Extension,
+                            ObjetoReferencia = new Guid(usuarioIden.Id),
+                            DocumentoId = Guid.NewGuid(),
+                            FechaCreacion = DateTime.UtcNow
+                        };
+                        _context.Documento.Add(imagen);
+                    }
+                    else
+                    {
+                        resultadoImagen.Contenido = Convert.FromBase64String(request.ImagenPerfil.Data);
+                        resultadoImagen.Nombre = request.ImagenPerfil.Nombre;
+                        resultadoImagen.Extension = request.ImagenPerfil.Extension;
+                    }
+
                 }
 
                 usuarioIden.NombreCompleto = request.NombreCompleto;
@@ -75,7 +101,8 @@ namespace Aplicacion.Seguridad
                 {
                     var resultadoRoles = await _userManager.GetRolesAsync(usuarioIden);
 
-                    return new UsuarioData{
+                    return new UsuarioData
+                    {
                         NombreCompleto = usuarioIden.NombreCompleto,
                         UserName = usuarioIden.UserName,
                         Email = usuarioIden.Email,
