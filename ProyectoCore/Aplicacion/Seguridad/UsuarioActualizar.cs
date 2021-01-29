@@ -68,7 +68,7 @@ namespace Aplicacion.Seguridad
 
                 if (request.ImagenPerfil != null)
                 {
-                    var resultadoImagen = await _context.Documento.Where(x => x.ObjetoReferencia.Equals(new Guid(usuarioIden.Id))).FirstAsync();
+                    var resultadoImagen = await _context.Documento.Where(x => x.ObjetoReferencia.Equals(new Guid(usuarioIden.Id))).FirstOrDefaultAsync();
                     if (resultadoImagen == null)
                     {
                         var imagen = new Documento
