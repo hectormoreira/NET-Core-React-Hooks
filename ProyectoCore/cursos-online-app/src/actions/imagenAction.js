@@ -5,6 +5,7 @@ export const obtenerDataImagen = imagen =>{
 
         const lector = new FileReader();
         lector.readAsDataURL(imagen);
+        
         lector.onload = () => resolve(
             {
                 data: lector.result.split(",")[1],

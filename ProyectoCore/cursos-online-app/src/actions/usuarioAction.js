@@ -1,62 +1,73 @@
-import HttpCliente from '../servicios/HttpCliente';
-import axios from 'axios';
+import HttpCliente from "../servicios/HttpCliente";
+import axios from "axios";
 
 const instancia = axios.create();
 instancia.CancelToken = axios.CancelToken;
 instancia.isCancel = axios.isCancel;
 
-export const registrarUsuario = usuario =>{
-    return new Promise((resolve, eject) =>{
-        HttpCliente.post('/usuario/registrar', usuario)
-        .then(response =>{
-            resolve(response);
-        })
-    })
-}
+export const registrarUsuario = (usuario) => {
+  return new Promise((resolve, eject) => {
+    HttpCliente.post("/usuario/registrar", usuario).then((response) => {
+      resolve(response);
+    });
+  });
+};
 
-export const obtenerUsuarioActual = (dispatch) =>{
-    return new Promise( (resolve, eject) =>{
-        HttpCliente.get('/usuario')
-        .then(response => {
-            if (response.data && response.data.imagenPerfil) {
-                let fotoPerfil = response.data.imagenPerfil;
-                const newFile = `data:imagen/${fotoPerfil.extension};base64,${fotoPerfil.data}`;
-                response.data.imagenPerfil = newFile;
-            }
-            dispatch({
-                type: "INICIAR_SESION",
-                sesion: response.data,
-                autenticado: true
-            });
-            resolve(response);
-        })
-    })
-}
+export const obtenerUsuarioActual = (dispatch) => {
+  return new Promise((resolve, eject) => {
+    HttpCliente.get("/usuario").then((response) => {
+      if (response.data && response.data.imagenPerfil) {
+        let fotoPerfil = response.data.imagenPerfil;
+        const newFile = 'data:image/' + fotoPerfil.extension + ';base64,' + fotoPerfil.data;
+        response.data.imagenPerfil = newFile;
+      }
+      dispatch({
+        type: "INICIAR_SESION",
+        sesion: response.data,
+        autenticado: true,
+      });
+      resolve(response);
+    });
+  });
+};
 
-export const actualizarUsuario = (usuario) =>{
-    return new Promise( (resolve, eject) =>{
-        HttpCliente.put('/usuario', usuario)
-        .then(response => {
-            resolve(response);
-        })
-        .catch(error => {
-            resolve(error.response);
-        })
-    })
-}
+export const actualizarUsuario = (usuario, dispatch) => {
+  return new Promise((resolve, eject) => {
+    HttpCliente.put("/usuario", usuario)
+      .then(response => {
+        if (response.data && response.data.imagenPerfil) {
+          let fotoPerfil = response.data.imagenPerfil;
+          const newFile = 'data:image/' + fotoPerfil.extension + ';base64,' + fotoPerfil.data;
+          response.data.imagenPerfil = newFile;
+        }
+        dispatch({
+          type: "INICIAR_SESION",
+          sesion: response.data,
+          autenticado: true,
+        });
+        resolve(response);
+      })
+      .catch((error) => {
+          console.log(error.response);
+        resolve(error.response);
+      });
+  });
+};
 
 export const loginUsuario = (usuario, dispatch) => {
-    return new Promise((resolve, eject) => {
-      instancia.post("/usuario/login", usuario)
-      .then(response => {
+  return new Promise((resolve, eject) => {
+    instancia
+      .post("/usuario/login", usuario)
+      .then((response) => {
         dispatch({
-          type : "INICIAR_SESION",
-          sesion : response.data,
-          autenticado : true
-        })        
+          type: "INICIAR_SESION",
+          sesion: response.data,
+          autenticado: true,
+        });
         resolve(response);
-      }).catch(error => {
-          resolve(error.response);
+      })
+      .catch((error) => {
+        resolve(error.response);
       });
-    });
-  };
+  });
+};

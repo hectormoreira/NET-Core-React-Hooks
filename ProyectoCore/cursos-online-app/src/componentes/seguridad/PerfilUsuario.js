@@ -8,10 +8,7 @@ import {
   Avatar,
 } from "@material-ui/core";
 import style from "../tool/Style";
-import {
-  actualizarUsuario,
-  obtenerUsuarioActual,
-} from "../../actions/usuarioAction";
+import { actualizarUsuario } from "../../actions/usuarioAction";
 import { useStateValue } from "../../contexto/store";
 import reactFoto from "../../logo.svg";
 import { v4 as uuidv4 } from "uuid";
@@ -45,11 +42,12 @@ const PerfilUsuario = () => {
       ...anterior,
       fotoUrl: sesionUsuario.usuario.imagenPerfil,
     }));
+    console.log('usuario ', sesionUsuario.usuario);
   }, []);
 
   const guardarUsuario = (e) => {
     e.preventDefault();
-    actualizarUsuario(usuario).then((response) => {
+    actualizarUsuario(usuario, dispatch).then((response) => {
       if (response.status === 200) {
         dispatch({
           type: "OPEN_SNACKBAR",
