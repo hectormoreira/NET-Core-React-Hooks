@@ -80,6 +80,9 @@ npm install @material-ui/icons
 npm install react-router-dom
 npm install react-images-upload
 npm install uuid
+npm install @date-io/date-fns@1.3.13
+npm install date-fns@2.12.0
+npm install @material-ui/pickers@3.2.10
 ```
 
 ## Recursos
@@ -89,4 +92,5 @@ npm install uuid
 - [Snackbars](https://material-ui.com/es/components/snackbars/)
 - [Drawers](https://material-ui.com/es/components/drawers/)
 - [Color tool](https://material.io/resources/color)
+- [Pickers](https://material-ui.com/es/components/pickers/)
 - [Axios](https://github.com/axios/axios)
