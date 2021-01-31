@@ -26,7 +26,7 @@ function App() {
     }
   }, [iniciaApp]);
 
-  return (
+  return iniciaApp === false ? null : (
     <React.Fragment>
       <Snackbar
         anchorOrigin={{vertical:"bottom", horizontal:"center"}}

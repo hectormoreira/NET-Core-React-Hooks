@@ -7,7 +7,8 @@ instancia.isCancel = axios.isCancel;
 
 export const registrarUsuario = usuario =>{
     return new Promise((resolve, eject) =>{
-        HttpCliente.post('/usuario/registrar', usuario).then(response =>{
+        HttpCliente.post('/usuario/registrar', usuario)
+        .then(response =>{
             resolve(response);
         })
     })
@@ -15,7 +16,13 @@ export const registrarUsuario = usuario =>{
 
 export const obtenerUsuarioActual = (dispatch) =>{
     return new Promise( (resolve, eject) =>{
-        HttpCliente.get('/usuario').then(response => {
+        HttpCliente.get('/usuario')
+        .then(response => {
+            if (response.data && response.data.imagenPerfil) {
+                let fotoPerfil = response.data.imagenPerfil;
+                const newFile = `data:imagen/${fotoPerfil.extension};base64,${fotoPerfil.data}`;
+                response.data.imagenPerfil = newFile;
+            }
             dispatch({
                 type: "INICIAR_SESION",
                 sesion: response.data,
@@ -40,7 +47,8 @@ export const actualizarUsuario = (usuario) =>{
 
 export const loginUsuario = (usuario, dispatch) => {
     return new Promise((resolve, eject) => {
-      instancia.post("/usuario/login", usuario).then(response => {
+      instancia.post("/usuario/login", usuario)
+      .then(response => {
         dispatch({
           type : "INICIAR_SESION",
           sesion : response.data,
@@ -52,17 +60,3 @@ export const loginUsuario = (usuario, dispatch) => {
       });
     });
   };
-  
-
-// export const loginUsuario = (usuario) =>{
-//     return new Promise( (resolve, eject) =>{
-//         HttpCliente.post('/usuario/login', usuario)
-//         .then(response => {
-//             console.log("loginUsuario test: "+response);
-//             resolve(response);
-//         })
-//         .catch(error => {
-//             resolve(error.response);
-//         })
-//     })
-// }

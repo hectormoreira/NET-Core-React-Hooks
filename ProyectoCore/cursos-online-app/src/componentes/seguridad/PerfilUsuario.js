@@ -28,7 +28,7 @@ const PerfilUsuario = () => {
     email: "",
     userName: "",
     imagenPerfil: null,
-    fotoUrl: ""
+    fotoUrl: "",
   });
 
   const IngresarValores = (e) => {
@@ -40,10 +40,11 @@ const PerfilUsuario = () => {
   };
 
   useEffect(() => {
-    obtenerUsuarioActual(dispatch).then((response) => {
-      console.log("data del usuario actual ", response);
-      setUsuario(response.data);
-    });
+    setUsuario(sesionUsuario.usuario);
+    setUsuario((anterior) => ({
+      ...anterior,
+      fotoUrl: sesionUsuario.usuario.imagenPerfil,
+    }));
   }, []);
 
   const guardarUsuario = (e) => {
@@ -79,14 +80,14 @@ const PerfilUsuario = () => {
     const foto = imagenes[0];
     const fotoUrl = URL.createObjectURL(foto);
 
-    obtenerDataImagen(foto).then(respuesta => {
+    obtenerDataImagen(foto).then((respuesta) => {
       console.log("respuesta", respuesta);
       setUsuario((anterior) => ({
         ...anterior,
         imagenPerfil: respuesta, //response json desde action {data:..., nombre:..., extension:...}
         fotoUrl: fotoUrl, // formato url
       }));
-    })
+    });
   };
 
   return (

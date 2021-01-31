@@ -116,7 +116,7 @@ const BarSesion = (props) => {
           <Button color="inherit">
             {sesionUsuario ? sesionUsuario.usuario.nombreCompleto : ""}
           </Button>
-          <Avatar src={fotoUsuarioTemp}></Avatar>
+          <Avatar src={sesionUsuario.usuario.imagenPerfil || fotoUsuarioTemp}></Avatar>
         </div>
 
         <div className={classes.seccionMobile}>
