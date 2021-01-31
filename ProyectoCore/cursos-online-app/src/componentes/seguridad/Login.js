@@ -28,12 +28,12 @@ const Login = (props) => {
     }));
   };
 
-  const login = (e) => {
+  const login = e => {
     e.preventDefault();
     loginUsuario(usuario, dispatch).then((response) => {
       if (response.status === 200) {
         window.localStorage.setItem("token_seguridad", response.data.token);
-        props.history.push("/");
+        props.history.push("/auth/perfil");
       } else {
         dispatch({
           type: "OPEN_SNACKBAR",
@@ -92,4 +92,4 @@ const Login = (props) => {
   );
 };
 
-export default Login;
+export default withRouter(Login);

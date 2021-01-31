@@ -7,7 +7,7 @@ instancia.isCancel = axios.isCancel;
 
 export const registrarUsuario = (usuario) => {
   return new Promise((resolve, eject) => {
-    HttpCliente.post("/usuario/registrar", usuario).then((response) => {
+    instancia.post("/usuario/registrar", usuario).then((response) => {
       resolve(response);
     });
   });
@@ -15,29 +15,38 @@ export const registrarUsuario = (usuario) => {
 
 export const obtenerUsuarioActual = (dispatch) => {
   return new Promise((resolve, eject) => {
-    HttpCliente.get("/usuario").then((response) => {
-      if (response.data && response.data.imagenPerfil) {
-        let fotoPerfil = response.data.imagenPerfil;
-        const newFile = 'data:image/' + fotoPerfil.extension + ';base64,' + fotoPerfil.data;
-        response.data.imagenPerfil = newFile;
-      }
-      dispatch({
-        type: "INICIAR_SESION",
-        sesion: response.data,
-        autenticado: true,
+    HttpCliente.get("/usuario")
+      .then((response) => {
+        console.log("response", response);
+        if (response.data && response.data.imagenPerfil) {
+          let fotoPerfil = response.data.imagenPerfil;
+          const nuevoFile =
+            "data:image/" + fotoPerfil.extension + ";base64," + fotoPerfil.data;
+          response.data.imagenPerfil = nuevoFile;
+        }
+
+        dispatch({
+          type: "INICIAR_SESION",
+          sesion: response.data,
+          autenticado: true,
+        });
+        resolve(response);
+      })
+      .catch((error) => {
+        console.log("error actualizar", error);
+        resolve(error);
       });
-      resolve(response);
-    });
   });
 };
 
 export const actualizarUsuario = (usuario, dispatch) => {
   return new Promise((resolve, eject) => {
     HttpCliente.put("/usuario", usuario)
-      .then(response => {
+      .then((response) => {
         if (response.data && response.data.imagenPerfil) {
           let fotoPerfil = response.data.imagenPerfil;
-          const newFile = 'data:image/' + fotoPerfil.extension + ';base64,' + fotoPerfil.data;
+          const newFile =
+            "data:image/" + fotoPerfil.extension + ";base64," + fotoPerfil.data;
           response.data.imagenPerfil = newFile;
         }
         dispatch({
@@ -48,22 +57,28 @@ export const actualizarUsuario = (usuario, dispatch) => {
         resolve(response);
       })
       .catch((error) => {
-          console.log(error.response);
+        console.log(error.response);
         resolve(error.response);
       });
   });
 };
-
 export const loginUsuario = (usuario, dispatch) => {
   return new Promise((resolve, eject) => {
-    instancia
-      .post("/usuario/login", usuario)
+    instancia.post("/usuario/login", usuario)
       .then((response) => {
+        if (response.data && response.data.imagenPerfil) {
+          let fotoPerfil = response.data.imagenPerfil;
+          const nuevoFile =
+            "data:image/" + fotoPerfil.extension + ";base64," + fotoPerfil.data;
+          response.data.imagenPerfil = nuevoFile;
+        }
+
         dispatch({
           type: "INICIAR_SESION",
           sesion: response.data,
           autenticado: true,
         });
+
         resolve(response);
       })
       .catch((error) => {

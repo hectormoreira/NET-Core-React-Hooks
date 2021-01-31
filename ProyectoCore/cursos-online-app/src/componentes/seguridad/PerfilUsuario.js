@@ -41,8 +41,9 @@ const PerfilUsuario = () => {
     setUsuario((anterior) => ({
       ...anterior,
       fotoUrl: sesionUsuario.usuario.imagenPerfil,
+      imagenPerfil: null,
     }));
-    console.log('usuario ', sesionUsuario.usuario);
+    console.log("usuario ", sesionUsuario.usuario);
   }, []);
 
   const guardarUsuario = (e) => {
