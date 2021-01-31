@@ -14,8 +14,9 @@ import {
 } from "../../actions/usuarioAction";
 import { useStateValue } from "../../contexto/store";
 import reactFoto from "../../logo.svg";
-import {v4 as uuidv4} from "uuid";
+import { v4 as uuidv4 } from "uuid";
 import ImageUploader from "react-images-upload";
+import { obtenerDataImagen } from "../../actions/imagenAction";
 
 const PerfilUsuario = () => {
   const [{ sesionUsuario }, dispatch] = useStateValue();
@@ -26,7 +27,12 @@ const PerfilUsuario = () => {
     confirmarPassword: "",
     email: "",
     userName: "",
-    foto: ""
+    foto: {
+      data: "",
+      nombre: "",
+      extension: "",
+    },
+    fotoUrl: "",
   });
 
   const IngresarValores = (e) => {
@@ -72,14 +78,27 @@ const PerfilUsuario = () => {
   };
 
   const fotoKey = uuidv4();
-  const subirFoto = imagenes =>{
-    
-  }
+  const subirFoto = (imagenes) => {
+    const foto = imagenes[0];
+    const fotoUrl = URL.createObjectURL(foto);
+
+    obtenerDataImagen(foto).then(respuesta => {
+      console.log("respuesta", respuesta);
+      setUsuario((anterior) => ({
+        ...anterior,
+        foto: respuesta, //formato file
+        fotoUrl: fotoUrl, // formato url
+      }));
+    })
+  };
 
   return (
     <Container component="main" maxWidth="md" justify="center">
       <div style={style.paper}>
-        <Avatar style={style.avatar} src={usuario.foto || reactFoto}></Avatar>
+        <Avatar
+          style={style.avatar}
+          src={usuario.fotoUrl || reactFoto}
+        ></Avatar>
         <Typography component="h1" variant="h5">
           Perfil de usuario
         </Typography>
@@ -150,7 +169,7 @@ const PerfilUsuario = () => {
                 singleImage={true}
                 buttonText="Seleccione imagen de perfil"
                 onChange={subirFoto}
-                imgExtension={[".jpg",".gif",".png",".jpeg"]}
+                imgExtension={[".jpg", ".gif", ".png", ".jpeg"]}
                 maxFileSize={5242880}
               />
             </Grid>
