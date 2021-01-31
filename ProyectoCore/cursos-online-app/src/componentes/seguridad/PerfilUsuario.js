@@ -27,12 +27,8 @@ const PerfilUsuario = () => {
     confirmarPassword: "",
     email: "",
     userName: "",
-    foto: {
-      data: "",
-      nombre: "",
-      extension: "",
-    },
-    fotoUrl: "",
+    imagenPerfil: null,
+    fotoUrl: ""
   });
 
   const IngresarValores = (e) => {
@@ -78,6 +74,7 @@ const PerfilUsuario = () => {
   };
 
   const fotoKey = uuidv4();
+
   const subirFoto = (imagenes) => {
     const foto = imagenes[0];
     const fotoUrl = URL.createObjectURL(foto);
@@ -86,7 +83,7 @@ const PerfilUsuario = () => {
       console.log("respuesta", respuesta);
       setUsuario((anterior) => ({
         ...anterior,
-        foto: respuesta, //formato file
+        imagenPerfil: respuesta, //response json desde action {data:..., nombre:..., extension:...}
         fotoUrl: fotoUrl, // formato url
       }));
     })
