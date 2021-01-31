@@ -14,6 +14,7 @@ namespace Aplicacion.Cursos
     {
         public class Ejecuta : IRequest
         {
+            public Guid? CursoId { get; set; }
             public string Titulo { get; set; }
             public string Descripcion { get; set; }
             public DateTime? FechaPublicacion { get; set; }
@@ -26,9 +27,9 @@ namespace Aplicacion.Cursos
         {
             public EjecutaValidacion()
             {
-                RuleFor( x => x.Titulo).NotEmpty();
-                RuleFor( x => x.Descripcion).NotEmpty();
-                RuleFor( x => x.FechaPublicacion).NotEmpty();
+                RuleFor(x => x.Titulo).NotEmpty();
+                RuleFor(x => x.Descripcion).NotEmpty();
+                RuleFor(x => x.FechaPublicacion).NotEmpty();
             }
         }
 
@@ -43,8 +44,14 @@ namespace Aplicacion.Cursos
             public async Task<Unit> Handle(Ejecuta request, CancellationToken cancellationToken)
             {
                 Guid _cursoId = Guid.NewGuid();
-                var curso = new Curso{
-                    CursoId =_cursoId,
+                if (request.CursoId != null)
+                {
+                    _cursoId = request.CursoId ?? Guid.NewGuid();
+                }
+
+                var curso = new Curso
+                {
+                    CursoId = _cursoId,
                     Titulo = request.Titulo,
                     Descripcion = request.Descripcion,
                     FechaCreacion = DateTime.UtcNow,
@@ -56,7 +63,8 @@ namespace Aplicacion.Cursos
                 {
                     foreach (var id in request.ListaInstructor)
                     {
-                        CursoInstructor cursoInstructor =  new CursoInstructor{
+                        CursoInstructor cursoInstructor = new CursoInstructor
+                        {
                             CursoId = _cursoId,
                             InstructorId = id
                         };
@@ -65,7 +73,8 @@ namespace Aplicacion.Cursos
                 }
 
                 //insertar precio del curso
-                var precioEntidad = new Precio{
+                var precioEntidad = new Precio
+                {
                     CursoId = _cursoId,
                     PrecioActual = request.Precio,
                     Promocion = request.Promocion,

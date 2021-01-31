@@ -10,6 +10,7 @@ import AppNavbar from "./componentes/navegacion/AppNavbar";
 import { useStateValue } from "./contexto/store";
 import { obtenerUsuarioActual } from "./actions/usuarioAction";
 import RutaSegura from "./componentes/navegacion/RutaSegura";
+import NuevoCurso from "./componentes/cursos/NuevoCurso";
 
 function App() {
   const [{ sesionUsuario, openSnackbar }, dispatch] = useStateValue();
@@ -30,36 +31,41 @@ function App() {
   return iniciaApp === false ? null : (
     <React.Fragment>
       <Snackbar
-        anchorOrigin={{vertical:"bottom", horizontal:"center"}}
+        anchorOrigin={{ vertical: "bottom", horizontal: "center" }}
         open={openSnackbar ? openSnackbar.open : false}
         autoHideDuration={3000}
-        ContentProps={{"aria-describedby":"message-id"}}
+        ContentProps={{ "aria-describedby": "message-id" }}
         message={
-          <span id="message-id">{openSnackbar ? openSnackbar.mensaje : "" }</span>
+          <span id="message-id">
+            {openSnackbar ? openSnackbar.mensaje : ""}
+          </span>
         }
-        onClose={ ()=>
+        onClose={() =>
           dispatch({
             type: "OPEN_SNACKBAR",
-            openMensaje:{
+            openMensaje: {
               open: false,
-              mensaje: ""
-            }
+              mensaje: "",
+            },
           })
         }
-      >
-
-      </Snackbar>
+      ></Snackbar>
       <Router>
         <MuiThemeprovider theme={theme}>
           <AppNavbar />
           <Grid container>
             <Switch>
               <Route exact path="/auth/login" component={Login} />
-              <Route exact path="/auth/registrar" component={RegistrarUsuario}
+              <Route
+                exact
+                path="/auth/registrar"
+                component={RegistrarUsuario}
               />
 
               <RutaSegura exact path="/auth/perfil" component={PerfilUsuario} />
               <RutaSegura exact path="/" component={PerfilUsuario} />
+
+              <RutaSegura exact path="/curso/nuevo" component={NuevoCurso} />
 
             </Switch>
           </Grid>
