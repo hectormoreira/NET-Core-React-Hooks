@@ -47,3 +47,6 @@ node_modules/
 .pnp
 .pnp.js
 .eslintcache
+
+# release folder
+wwwroot/

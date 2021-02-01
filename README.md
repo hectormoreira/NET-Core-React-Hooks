@@ -72,6 +72,16 @@ cd cursos-online-app
 npm start
 ```
 
+# Release
+In package.json section "script" adding:
+```
+"postbuild": "move build ../WebApi/wwwroot",
+```
+Publish
+```
+npm run build
+```
+
 ## Librerías
 ```
 npm install axios
