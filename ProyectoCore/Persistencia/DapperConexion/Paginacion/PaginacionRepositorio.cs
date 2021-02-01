@@ -30,7 +30,7 @@ namespace Persistencia.DapperConexion.Paginacion
                 foreach (var param in parametroFiltro)
                 {
                     parametros.Add("@" + param.Key, param.Value);
-                }
+                }                
 
                 parametros.Add("@NumeroPagina", numeroPagina);
                 parametros.Add("@CantidadElementos", cantidadElementos);
@@ -41,7 +41,6 @@ namespace Persistencia.DapperConexion.Paginacion
 
                 var result = await connection.QueryAsync( storeProcedure, parametros, commandType: CommandType.StoredProcedure);
                 listaReporte = result.Select(x => (IDictionary<string, object>)x ).ToList();
-
                 paginacionModel.ListaRecords = listaReporte;
                 paginacionModel.NumeroPaginas = parametros.Get<int>("@TotalPaginas");
                 paginacionModel.TotalRecords = parametros.Get<int>("@TotalRecords");

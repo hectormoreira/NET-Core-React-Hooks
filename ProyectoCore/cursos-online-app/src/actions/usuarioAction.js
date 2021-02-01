@@ -17,7 +17,6 @@ export const obtenerUsuarioActual = (dispatch) => {
   return new Promise((resolve, eject) => {
     HttpCliente.get("/usuario")
       .then((response) => {
-        console.log("response", response);
         if (response.data && response.data.imagenPerfil) {
           let fotoPerfil = response.data.imagenPerfil;
           const nuevoFile =

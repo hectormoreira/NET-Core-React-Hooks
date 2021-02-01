@@ -80,7 +80,6 @@ const PerfilUsuario = () => {
     const fotoUrl = URL.createObjectURL(foto);
 
     obtenerDataImagen(foto).then((respuesta) => {
-      console.log("respuesta", respuesta);
       setUsuario((anterior) => ({
         ...anterior,
         imagenPerfil: respuesta, //response json desde action {data:..., nombre:..., extension:...}

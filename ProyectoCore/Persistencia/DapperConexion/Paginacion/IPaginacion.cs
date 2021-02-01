@@ -5,6 +5,6 @@ namespace Persistencia.DapperConexion.Paginacion
 {
     public interface IPaginacion
     {
-        Task<PaginacionModel> DevolverPaginacion(string storeProcedure, int numeroPagina, int cantidadElementos, IDictionary<string, object> parametroFiltro, string ordenamientoColumna);
+        Task<PaginacionModel> DevolverPaginacion(string storeProcedure, int numeroPagina, int cantidadElementos, IDictionary<string, object> parametrosFiltro, string ordenamientoColumna);
     }
 }

@@ -1,0 +1,8 @@
+create procedure usp_instructor_eliminar(
+	@InstructorId uniqueidentifier
+)
+as
+	begin
+		delete from CursoInstructor where InstructorId = @InstructorId
+		delete from Instructor where InstructorId = @InstructorId
+	end

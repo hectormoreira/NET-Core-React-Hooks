@@ -11,6 +11,7 @@ import { useStateValue } from "./contexto/store";
 import { obtenerUsuarioActual } from "./actions/usuarioAction";
 import RutaSegura from "./componentes/navegacion/RutaSegura";
 import NuevoCurso from "./componentes/cursos/NuevoCurso";
+import PaginadorCurso from "./componentes/cursos/PaginadorCurso";
 
 function App() {
   const [{ sesionUsuario, openSnackbar }, dispatch] = useStateValue();
@@ -66,6 +67,8 @@ function App() {
               <RutaSegura exact path="/" component={PerfilUsuario} />
 
               <RutaSegura exact path="/curso/nuevo" component={NuevoCurso} />
+
+              <RutaSegura exact path="/curso/paginador" component={PaginadorCurso} />
 
             </Switch>
           </Grid>

@@ -15,7 +15,7 @@ import DateFnsUtils from "@date-io/date-fns";
 import ImageUploader from "react-images-upload";
 import { v4 as uuidv4 } from "uuid";
 import { obtenerDataImagen } from "../../actions/imagenAction";
-import { guardarCurso } from "../../actions/CursoAction";
+import { guardarCurso } from "../../actions/cursoAction";
 import { useStateValue } from "../../contexto/store";
 
 const NuevoCurso = () => {
