@@ -40,13 +40,18 @@ Instalar EF
 dotnet tool install --global dotnet-ef --version 3.1.10
 ```
 
-Migración
+## Migración
 
 ```
 dotnet ef migrations add "crearEntidadDocumento" -p Persistencia/ -s WebApi/
 cd WebApi
 dotnet watch run
 ```
+## Release NetCore
+```
+dotnet publish -c Release -o publish --self-contained false ProyectoCore.sln
+```
+
 
 ## Extensiones VSCode
 - [Auto rename tag - JunHan](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-rename-tag)
@@ -59,6 +64,7 @@ dotnet watch run
 - [Node.js Modules Intellisense](https://marketplace.visualstudio.com/items?itemName=leizongmin.node-module-intellisense)
 - [HTML Boilerplate](https://marketplace.visualstudio.com/items?itemName=sidthesloth.html5-boilerplate)
 - [Auto Close Tag](https://marketplace.visualstudio.com/items?itemName=formulahendry.auto-close-tag)
+- Azure App Service
 
 
 # React app

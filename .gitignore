@@ -50,3 +50,4 @@ node_modules/
 
 # release folder
 wwwroot/
+publish/
