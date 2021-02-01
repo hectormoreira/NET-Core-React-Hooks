@@ -24,6 +24,7 @@ En Aplicacion, para inyección de dependencias
 - FluentValidation.AspNetCore 8.6.2
 - Newtonsoft.Json
 - AutoMapper.Extensions.Microsoft.DependencyInjection
+- iTextSharp.LGPLv2.Core (1.6.7)
 
 En Seguridad
 - System.IdentityModel.Token.Jwt
