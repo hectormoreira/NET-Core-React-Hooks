@@ -10,9 +10,15 @@ import {
   TableCell,
   TablePagination,
   Hidden,
+  Grid,
+  TextField,
 } from "@material-ui/core";
+import ControlTyping from "../tool/ControlTyping";
 
 const PaginadorCurso = () => {
+  const [textoBusquedaCurso, setTextoBusquedaCurso] = useState("");
+  const typingBuscadorTexto = ControlTyping(textoBusquedaCurso, 900);
+
   const [paginadorRequest, setPaginadorRequest] = useState({
     titulo: "",
     numeroPagina: 0,
@@ -26,18 +32,25 @@ const PaginadorCurso = () => {
   });
 
   useEffect(() => {
-    const objetoPaginadorRequest = {
-      titulo: paginadorRequest.titulo,
-      numeroPagina: paginadorRequest.numeroPagina + 1,
-      cantidadElementos: paginadorRequest.cantidadElementos,
-    };
-
     const obtenerListCurso = async () => {
+      let tituloVariant = "";
+      let paginaVariant = paginadorRequest.numeroPagina + 1;
+      if (typingBuscadorTexto) {
+        tituloVariant = typingBuscadorTexto;
+        paginaVariant = 1;
+      }
+
+      const objetoPaginadorRequest = {
+        titulo: tituloVariant,
+        numeroPagina: paginaVariant,
+        cantidadElementos: paginadorRequest.cantidadElementos,
+      };
+
       const response = await paginacionCurso(objetoPaginadorRequest);
       setPaginadorResponse(response.data);
     };
     obtenerListCurso();
-  }, [paginadorRequest]);
+  }, [paginadorRequest, typingBuscadorTexto]);
 
   const cambiarPagina = (event, nuevaPagina) => {
     setPaginadorRequest((anterior) => ({
@@ -55,7 +68,18 @@ const PaginadorCurso = () => {
   };
 
   return (
-    <React.Fragment>
+    <div style={{ padding: "10px", width: "100%" }}>
+      <Grid container style={{ paddingTop: "20px", paddingBottom: "20px" }}>
+        <Grid item xs={12} sm={4} md={6}>
+          <TextField
+            fullWidth
+            name="textoBusquedaCurso"
+            variant="outlined"
+            label="Busca tu curso"
+            onChange={(e) => setTextoBusquedaCurso(e.target.value)}
+          />
+        </Grid>
+      </Grid>
       <TableContainer component={Paper}>
         <Table>
           <TableHead>
@@ -65,7 +89,7 @@ const PaginadorCurso = () => {
                 <TableCell align="left">Descripción</TableCell>
                 <TableCell align="left">Fecha Publicación</TableCell>
                 <TableCell align="left">Precio Original</TableCell>
-                <TableCell align="left">Precio Promocion</TableCell>
+                <TableCell align="left">Precio Promoción</TableCell>
               </Hidden>
             </TableRow>
           </TableHead>
@@ -87,6 +111,7 @@ const PaginadorCurso = () => {
         </Table>
       </TableContainer>
       <TablePagination
+        component="div"
         rowsPerPageOptions={[5, 10, 25]}
         count={paginadorResponse.totalRecords}
         rowsPerPage={paginadorRequest.cantidadElementos}
@@ -95,7 +120,7 @@ const PaginadorCurso = () => {
         onChangeRowsPerPage={cambiarCantidadRecords}
         labelRowsPerPage="Cursos por página"
       />
-    </React.Fragment>
+    </div>
   );
 };
 
